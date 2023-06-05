@@ -1,0 +1,31 @@
+{
+  "name": "air-quality-api",
+  "version": "1.0.0",
+  "description": "Air quality api service sample using express.js and mongodb",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/raaedserag/air-quality-api.git"
+  },
+  "author": "raaedserag@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raaedserag/air-quality-api/issues"
+  },
+  "homepage": "https://github.com/raaedserag/air-quality-api#readme",
+  "dependencies": {
+    "config": "^3.3.9",
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.1.4",
+    "nodemon": "^2.0.22"
+  }
+}
