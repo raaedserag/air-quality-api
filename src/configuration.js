@@ -20,7 +20,7 @@ class Configuration {
   get logsConfig() {
     return {
       logsPath: process.env.LOGS_PATH,
-      enableConsoleLogs: config.get("enable_console_logs")
+      enableConsoleLogs: config.get("enableConsoleLogs")
     }
   }
   get iqAirQualityApiConfig() {
