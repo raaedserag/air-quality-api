@@ -29,6 +29,12 @@ class Configuration {
       baseUrl: process.env.IQ_AIR_QUALITY_API_BASE_URL
     }
   }
+  get mongoDbConfig() {
+    return {
+      uri: process.env.MONGO_DB_URI,
+      options: config.get("mongoConnectionOptions")
+    }
+  }
 }
 
 export default new Configuration(config.get("enableDotEnv"));

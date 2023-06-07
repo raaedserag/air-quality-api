@@ -1,5 +1,5 @@
 import { initializeExpressAPI } from "./routes/express-api.js"
-import { Logger } from "./utilities/index.js"
+import { Logger, dbConnection } from "./utilities/index.js"
 
 import config from "./configuration.js"
 
@@ -8,6 +8,8 @@ import config from "./configuration.js"
     .on("unhandledRejection", ex => { throw ex })
     .on('SIGTERM', () => process.exit(0))
     .on('SIGINT', () => process.exit(0))
+
+  await dbConnection.initialize()
 
   const expressApi = initializeExpressAPI()
   const serverLogger = new Logger("server")
