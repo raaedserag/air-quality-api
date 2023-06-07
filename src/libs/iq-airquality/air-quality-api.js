@@ -28,10 +28,10 @@ export class IqAirQualityApi {
     return response.data;
   }
 
-  async getNearestStationAirQuality(latitute, longitude) {
+  async getNearestStationAirQuality(latitude, longitude) {
     const path = "/nearest_city";
     const params = {
-      lat: latitute,
+      lat: latitude,
       lon: longitude
     };
     try {

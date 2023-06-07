@@ -13,7 +13,7 @@ class AirQualityService {
     }
 
     async getNearestStationAirQuality(latitute, longitude) {
-        const airQuality = await this.#iqAirQualityApi.getNearestStationAirQuality(latitute, longitude);
+        const airQuality = await this.#iqAirQualityApi.getNearestStationAirQuality(latitude, longitude);
         return airQuality.current;
     }
 }
