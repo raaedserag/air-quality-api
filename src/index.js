@@ -1,5 +1,6 @@
 import { initializeExpressAPI } from "./routes/express-api.js"
-import { Logger, dbConnection } from "./utilities/index.js"
+import { Logger, dbConnection, } from "./utilities/index.js"
+import { AirQualityPeriodicChecker } from "./air-quality-checker-job.js"
 
 import config from "./configuration.js"
 
@@ -10,6 +11,9 @@ import config from "./configuration.js"
     .on('SIGINT', () => process.exit(0))
 
   await dbConnection.initialize()
+
+  const airQualityChecker = new AirQualityPeriodicChecker(config.airQualityCheckerJobOptions.cityCoordinates, config.airQualityCheckerJobOptions.cronSchedule)
+  airQualityChecker.start()
 
   const expressApi = initializeExpressAPI()
   const serverLogger = new Logger("server")

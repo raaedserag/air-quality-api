@@ -1,5 +1,6 @@
 import { IqAirQualityApi } from "../libs/iq-airquality/index.js"
 import { Logger } from "../utilities/index.js"
+import { AirQuality } from "../models/index.js"
 
 
 class AirQualityService {
@@ -12,9 +13,13 @@ class AirQualityService {
         this.#iqAirQualityApi.setLogger(this.#logger);
     }
 
-    async getNearestStationAirQuality(latitute, longitude) {
+    async getNearestStationAirQuality(latitude, longitude) {
         const airQuality = await this.#iqAirQualityApi.getNearestStationAirQuality(latitude, longitude);
-        return airQuality.current;
+        return airQuality.current
+    }
+
+    async recordAirQuality(airPollution) {
+        return await AirQuality.create(airPollution);
     }
 }
 export default new AirQualityService();

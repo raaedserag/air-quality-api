@@ -35,6 +35,12 @@ class Configuration {
       options: config.get("mongoConnectionOptions")
     }
   }
+  get airQualityCheckerJobOptions() {
+    return {
+      cronSchedule: config.get("airQualityCheckerJobOptions.cronSchedule"),
+      cityCoordinates: config.get("airQualityCheckerJobOptions.cityCoordinates")
+    }
+  }
 }
 
 export default new Configuration(config.get("enableDotEnv"));
