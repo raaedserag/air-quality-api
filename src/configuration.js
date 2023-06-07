@@ -23,6 +23,12 @@ class Configuration {
       enableConsoleLogs: config.get("enable_console_logs")
     }
   }
+  get iqAirQualityApiConfig() {
+    return {
+      apiKey: process.env.IQ_AIR_QUALITY_API_KEY,
+      baseUrl: process.env.IQ_AIR_QUALITY_API_BASE_URL
+    }
+  }
 }
 
 export default new Configuration(config.get("enableDotEnv"));

@@ -5,9 +5,11 @@ import cors from "cors";
 import * as landingControllers from "../controllers/landing-controllers.js"
 import { errorMiddleware } from "../middlewares/index.js"
 
+import airQualityRoutes from "./air-quality-routes.js";
+
 export function initializeExpressAPI() {
   const app = express();
-  
+
   // Apply Essential Middlewares
   app.use(express.json({ limit: "10mb" }));
   app.use(express.urlencoded({ extended: true, limit: "10mb" }));
@@ -16,6 +18,9 @@ export function initializeExpressAPI() {
 
   app.get("/", landingControllers.getLandingPage);
   app.get("/live", landingControllers.getServerLiveStatus);
+
+  // Apply Routes
+  app.use("/air-quality", airQualityRoutes);
 
   // Apply Error Middleware
   app.use(errorMiddleware);
