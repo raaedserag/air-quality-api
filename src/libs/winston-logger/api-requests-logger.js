@@ -14,7 +14,7 @@ export class WinstonApiLogger extends ApiLogger {
         let apiLogerTransports = [
             new LoggerFileTransport("info", `${this.apiName}_API_Requests`)
         ]
-        if (config.logsConfig.enableConsoleLogs) apiLogerTransports.push(LoggerConsoleTransport("info", this.apiName))
+        if (config.logsConfig.enableConsoleLogs) apiLogerTransports.push(new LoggerConsoleTransport("info", this.apiName))
 
         return expressWinston.logger({
             transports: apiLogerTransports,
