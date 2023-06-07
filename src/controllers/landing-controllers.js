@@ -1,4 +1,4 @@
-import { config } from "../services/index.js"
+import config from "../configuration.js"
 
 export function getLandingPage(req, res) {
     return res.status(200).send("Welcome to air quality api");

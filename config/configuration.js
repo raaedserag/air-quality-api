@@ -18,6 +18,12 @@ class Configuration {
   get version() {
     return process.env.VERSION;
   }
+  get logsConfig() {
+    return {
+      logsPath: process.env.LOGS_PATH,
+      enableConsoleLogs: config.get("enable_console_logs")
+    }
+  }
 }
 
 export default new Configuration();

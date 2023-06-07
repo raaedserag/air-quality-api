@@ -1,3 +1,4 @@
 module.exports = {
-    enableDotEnv: false
+    enableDotEnv: false,
+    enable_console_logs: false
 }

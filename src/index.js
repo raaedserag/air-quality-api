@@ -1,6 +1,6 @@
 import { initializeExpressAPI } from "./routes/express-api.js"
 
-import { config } from "./services/index.js"
+import config from "./configuration.js"
 
 (async function () {
   process
