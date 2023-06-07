@@ -2,9 +2,8 @@ import config from "config"
 import { config as dotEenvConfig } from 'dotenv'
 
 class Configuration {
-  constructor() {
-    this.enableDotEnv = config.get("enableDotEnv")
-    if (this.enableDotEnv) dotEenvConfig()
+  constructor(enableDotEnv) {
+    if (enableDotEnv) dotEenvConfig()
   }
   get port() {
     return process.env.PORT;
@@ -26,4 +25,4 @@ class Configuration {
   }
 }
 
-export default new Configuration();
+export default new Configuration(config.get("enableDotEnv"));

@@ -4,7 +4,6 @@ export default function (err, req, res, next) {
     return res.status(err.httpcode).send(err.httpMessage);
   }
   else {
-    console.log(err);
     return res.status(500).send("Internal Server Error");
   }
 };
