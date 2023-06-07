@@ -20,6 +20,8 @@ router.get("/by-location",
     airQualityControllers.getNearestStationAirQuality
 );
 
+router.get("/max-pollution", airQualityControllers.getMaxPollution)
+
 router.use(routerLogger.errorsLoggerMiddleware)
 
 export default router;

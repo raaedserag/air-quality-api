@@ -8,3 +8,11 @@ export async function getNearestStationAirQuality(req, res) {
         result: _.pick(airQuality, "pollution")
     });
 }
+
+export async function getMaxPollution(req, res) {
+    const maxPollutionEntry = await AirQualityService.getMaxPollutionEntry();
+    return res.status(200).send({
+        maxPolltionValue: maxPollutionEntry.aqius,
+        maxPollutionDateTime: maxPollutionEntry.ts
+    });
+}

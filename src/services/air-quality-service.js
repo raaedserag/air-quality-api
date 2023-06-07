@@ -21,5 +21,9 @@ class AirQualityService {
     async recordAirQuality(airPollution) {
         return await AirQuality.create(airPollution);
     }
+
+    async getMaxPollutionEntry() {
+        return await AirQuality.findOne({}).sort({ "aqius": -1 }).limit(1);
+    }
 }
 export default new AirQualityService();
