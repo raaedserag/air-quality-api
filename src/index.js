@@ -1,4 +1,5 @@
 import { initializeExpressAPI } from "./routes/express-api.js"
+import { ServiceLogger } from "./utilities/index.js"
 
 import config from "./configuration.js"
 
@@ -9,5 +10,6 @@ import config from "./configuration.js"
     .on('SIGINT', () => process.exit(0))
 
   const expressApi = initializeExpressAPI()
-  expressApi.listen(config.port, config.host, () => console.log(`Server started as ${config.environment} on ${config.host}:${config.port}`));
+  const serverLogger = new ServiceLogger("server")
+  expressApi.listen(config.port, config.host, () => serverLogger.log(`Server started as ${config.environment} on ${config.host}:${config.port}`));
 })();
