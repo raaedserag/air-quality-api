@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as IqAirQualityException from "./api-errors.js"
-import { ServiceLogger } from "../../classes/index.js"
+import { ComponentLogger } from "../../classes/index.js"
 import config from "../../configuration.js"
 
 export class IqAirQualityApi {
@@ -11,8 +11,8 @@ export class IqAirQualityApi {
   }
 
   setLogger(logger) {
-    if (!(logger instanceof ServiceLogger)) {
-      throw new Error("logger must be an instance of ServiceLogger");
+    if (!(logger instanceof ComponentLogger)) {
+      throw new Error("logger must be an instance of ComponentLogger");
     }
     this.#logger = logger;
   }

@@ -1,9 +1,9 @@
 import { createLogger } from "winston"
 import config from "../../configuration.js"
-import {ServiceLogger} from "../../classes/index.js"
+import {ComponentLogger} from "../../classes/index.js"
 import { LoggerConsoleTransport, LoggerFileTransport } from "./transports.js"
 
-export class WinstonServiceLogger extends ServiceLogger {
+export class WinstonComponentLogger extends ComponentLogger {
   #logger;
   constructor(loggerName) {
     super()

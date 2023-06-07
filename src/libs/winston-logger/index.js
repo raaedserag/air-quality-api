@@ -1,2 +1,2 @@
 export {WinstonApiLogger} from "./api-requests-logger.js"
-export {WinstonServiceLogger} from "./service-logger.js"
+export {WinstonComponentLogger} from "./service-logger.js"
