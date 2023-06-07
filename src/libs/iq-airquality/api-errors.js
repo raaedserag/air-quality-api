@@ -14,12 +14,6 @@ export class NotFoundException extends IqAirQualityException {
         this.type = "NotFound";
     }
 }
-export class BadRequestException extends IqAirQualityException {
-    constructor(message) {
-        super(message, 400);
-        this.type = "BadRequest";
-    }
-}
 export class IntegrationException extends IqAirQualityException {
     constructor(message) {
         super(message, 500);

@@ -39,11 +39,8 @@ export class IqAirQualityApi {
       return apiResponse.data;
     } catch (error) {
       this.#logger.error(error);
-      if (error.response.status === 404) {
+      if (error.response.status === 400 && error.response.data.data.message == "city_not_found") {
         throw new IqAirQualityException.NotFoundException();
-      }
-      else if (error.response.status === 400) {
-        throw new IqAirQualityException.BadRequestException(error.response.data.data.message);
       }
       throw new IqAirQualityException.IntegrationException(error.message);
     }
