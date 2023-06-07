@@ -3,7 +3,7 @@ import express from "express";
 import "express-async-errors"
 import cors from "cors";
 import * as landingControllers from "../controllers/landing-controllers.js"
-import {errorMiddleware} from "../middlewares/index.js"
+import { errorMiddleware } from "../middlewares/index.js"
 
 export function initializeExpressAPI() {
   const app = express();
