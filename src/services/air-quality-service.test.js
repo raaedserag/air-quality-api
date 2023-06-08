@@ -1,19 +1,28 @@
 import airQualityService from "./air-quality-service.js"
+import * as iqAirQualityApiMock from "../tests/unit/iq-air-quality-mock.js"
 import { dbConnection } from "../utilities/index.js"
 import { HttpException } from "../classes/index.js"
 
+
 beforeAll(async () => {
+    await dbConnection.setupTesting();
     await dbConnection.initialize();
 });
 
 afterAll(async () => {
+    await dbConnection.dropTestingDatabase();
     await dbConnection.close();
+});
+afterEach(async () => {
+    await dbConnection.dropCollections();
 });
 
 describe('Test Air Quality Service', function () {
     describe('Test getNearestStationAirQuality', function () {
         it('should return a valid response when valid geo location point provided', async function () {
+            iqAirQualityApiMock.mockGetNearestStationAirQualityValidResponse();
             const response = await airQualityService.getNearestStationAirQuality(48.856613, 2.352222);
+
             expect(response).toHaveProperty("pollution");
 
             expect(response.pollution).toHaveProperty("ts");
@@ -30,12 +39,30 @@ describe('Test Air Quality Service', function () {
             expect(typeof response.pollution.aqicn).toBe("number");
         });
         it('should throw an exception when providing a valid geo location but no near stations found', async function () {
+            iqAirQualityApiMock.mockGetNearestStationAirQualityNoStationFound();
             await expect(airQualityService.getNearestStationAirQuality(1, 1)).rejects.toBeInstanceOf(HttpException);
         });
     });
 
     describe('Test getMaxPollutionEntry', function () {
         it('should return the max pollution entry', async function () {
+            const airQuality1 = {
+                ts: new Date(),
+                aqius: 1,
+                mainus: "p2",
+                aqicn: 1,
+                maincn: "p2"
+            }
+            const airQuality2 = {
+                ts: new Date(),
+                aqius: 2,
+                mainus: "p2",
+                aqicn: 2,
+                maincn: "p2"
+            }
+            await airQualityService.recordAirQuality(airQuality1);
+            await airQualityService.recordAirQuality(airQuality2);
+
             const response = await airQualityService.getMaxPollutionEntry();
 
             expect(response).toHaveProperty("ts");
