@@ -1,5 +1,5 @@
 module.exports = {
-    enableDotEnv: false,
+    enableDotEnv: true,
     enableConsoleLogs: false,
     mongoConnectionOptions: {
         authSource: "admin",

@@ -1,5 +1,4 @@
 import mongoose from "mongoose"
-import { MongoMemoryServer } from "mongodb-memory-server"
 import { setTimeout } from "timers/promises"
 import { ComponentLogger } from "../../classes/index.js"
 
@@ -47,11 +46,9 @@ export class MongooseClientConnection {
     }
 
     async setupTesting() {
-        this.#logger.log(`Preparing Mongo Cluster in memory for testing`)
+        this.#logger.log(`Preparing testing environment for Mongo Cluster`)
         this.#isTesting = true;
-        const mongoMemoryServer = await MongoMemoryServer.create();
-        this.connectionUri = mongoMemoryServer.getUri()
-        this.connectionOptions = { useNewUrlParser: true }
+        this.connectionUri = `${this.connectionUri}-testdb`
     }
 
     async dropTestingDatabase() {
@@ -64,7 +61,13 @@ export class MongooseClientConnection {
         this.#logger.log(`Dropping Mongo Cluster in memory for testing`)
         const collections = await mongoose.connection.db.collections()
         for (let collection of collections) {
-            await collection.drop()
+            try {
+                await collection.drop()
+            } catch (error) {
+                if (error.message === "ns not found") return
+                if (error.message.includes("a background operation is currently running")) return
+                this.#logger.error(error.message)
+            }
         }
     }
 }
