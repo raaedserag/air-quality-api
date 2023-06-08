@@ -1,4 +1,4 @@
 module.exports = {
     enableDotEnv: true,
-    enableConsoleLogs: true
+    enableConsoleLogs: false
 }
