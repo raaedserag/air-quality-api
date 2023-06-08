@@ -33,4 +33,17 @@ export class MongooseClientConnection {
             }
         })
     }
+
+    async close() {
+        return new Promise(async (resolve, reject) => {
+            try {
+                await mongoose.connection.close()
+                this.logger.log(`Disconnected from Mongo Cluster`)
+                resolve()
+            } catch (error) {
+                this.logger.error(`Disconnection from Mongo Cluster failed: ${error}`)
+                reject(error)
+            }
+        })
+    }
 }

@@ -1,0 +1,16 @@
+{
+    "verbose": true,
+    "rootDir": ".",
+    "testMatch": [
+        "**/**.spec.js",
+        "**/**.test.js"
+    ],
+    "coveragePathIgnorePatterns": [
+        "src/tests/"
+    ],
+    "moduleFileExtensions": [
+        "js"
+    ],
+    "testEnvironment": "node",
+    "clearMocks": true
+}
