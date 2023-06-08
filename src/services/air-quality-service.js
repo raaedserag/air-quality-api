@@ -1,6 +1,7 @@
 import { IqAirQualityApi } from "../libs/iq-airquality/index.js"
 import { Logger } from "../utilities/index.js"
 import { AirQuality } from "../models/index.js"
+import config from "../configuration.js"
 
 
 class AirQualityService {
@@ -8,7 +9,7 @@ class AirQualityService {
     #logger;
 
     constructor() {
-        this.#iqAirQualityApi = new IqAirQualityApi();
+        this.#iqAirQualityApi = new IqAirQualityApi(config.iqAirQualityApiConfig);
         this.#logger = new Logger("air-quality-service");
         this.#iqAirQualityApi.setLogger(this.#logger);
     }

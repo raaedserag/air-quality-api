@@ -5,9 +5,9 @@ import config from "../../configuration.js"
 
 export class IqAirQualityApi {
   #logger;
-  constructor() {
-    this.apiKey = config.iqAirQualityApiConfig.apiKey;
-    this.baseUrl = config.iqAirQualityApiConfig.baseUrl;
+  constructor(iqAirQualityApiConfig = config.iqAirQualityApiConfig) {
+    this.apiKey = iqAirQualityApiConfig.apiKey;
+    this.baseUrl = iqAirQualityApiConfig.baseUrl;
   }
 
   setLogger(logger) {

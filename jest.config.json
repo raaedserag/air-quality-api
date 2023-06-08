@@ -12,5 +12,6 @@
         "js"
     ],
     "testEnvironment": "node",
-    "clearMocks": true
+    "clearMocks": true,
+    "transform": {}
 }
